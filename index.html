@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>d3 Implementation</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -54,14 +54,21 @@
 							<li>Draw line inside chart</li>
 						</ol>
 					</section>
-					<section>
-						<h4>d3-drawn chart</h4>
-						<ol>
-							<li>Make axes ( x, y )</li>
-							<li>Label axes</li>
-							<li>Draw line inside chart</li>
-						</ol>
-					</section>
+				</section>
+				<section>
+					<h4>d3-drawn chart</h4>
+					<small>
+						( @ <a href="https://qmulo9.atlassian.net/wiki/display/DEV/Data+Visualization+with+d3.js+v3">doc</a> )
+					</small>
+					<ol>
+						<li>Create container for all graph components ( usually svg )</li>
+						<li>Append a wrapper to group components</li>
+						<li>Define axes components + styling ( x, y )</li>
+						<li>Define line component</li>
+					</ol>
+					<p>
+						<img src="/images/linechartparts.png" />
+					</p>
 				</section>
 			</div>
 		</div>
