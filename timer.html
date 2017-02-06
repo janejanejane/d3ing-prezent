@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TImer</title>
+  </head>
+  <style>
+    #wrapper {
+      left: 50%;
+      margin: 0 auto;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #start {
+      font-size: 50px;
+    }
+
+    #timer {
+      color: blue;
+      font-size: 200px;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="timer">-</div>
+      <button id="start" onclick="startCount()">Start</button>
+    </div>
+    <script>
+      var count = 3;
+
+      function startCount() {
+        document.getElementById( 'start' ).remove();
+        var timer = setInterval( function() {
+          document.getElementById( 'timer' ).innerHTML = count;
+
+          if( count === 0 ) {
+            clearInterval( timer );
+
+            document.getElementById( 'timer' ).style.color = 'red';
+            document.getElementById( 'timer' ).innerHTML = "Time's up!";
+          }
+
+          count--;
+
+          console.log(count, 'countdown!!!');
+        }, 1000 );
+      }
+    </script>
+  </body>
+</html>
