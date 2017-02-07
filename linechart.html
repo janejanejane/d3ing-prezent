@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Line Chart</title>
+  </head>
+  <style>
+    #chart svg {
+      background: red;
+    }
+
+    #chart .line-group {
+      fill: transparent;
+      stroke: blue;
+    }
+  </style>
+  <body>
+    <div id="chart"></div>
+    <script src="lib/js/d3.min.js"></script>
+    <script>
+      function draw() {
+        var svg = d3.select( '#chart' )
+          .append( 'svg' )
+          .attr( 'width', 500 )
+          .attr( 'height', 400 )
+          .attr( 'class', 'graph' );
+
+        var wrapper = svg.append( 'g' )
+          .attr( 'transform', 'translate( 50, 200 )' );
+
+        var data = [ 4, 2, 6, 5, 1, 0 ];
+
+        var x = d3.scale.linear();
+        x.domain( [ 0, 7 ] )
+          .range( [ 0, 400 ] );
+
+        var y = d3.scale.linear();
+        y.domain( d3.extent( data ) ).nice()
+          .range( [ 200, 0 ] );
+
+        var xAxis = d3.svg.axis();
+        var xValues = [ '1', '2', '3', '4', '5', '6', '7' ];
+        xAxis.scale( x )
+          .tickValues( xValues.map( function( d, i ) {
+              return i;
+          } ) )
+          .tickFormat( function( i ) {
+              return xValues[ i ];
+          } )
+          .orient( 'bottom' );
+
+        wrapper.append( 'g' )
+          .attr( 'class', 'x axis' )
+          .style( 'fill', '#dddddd' )
+          .call( xAxis );
+
+        var line = d3.svg.line().interpolate( 'linear' );
+
+        line.x( function( d, i ) {
+          return x( i );
+        } )
+        .y( function( d, i ) {
+          return y( d );
+        } );
+
+        wrapper.append( 'g' )
+            .attr( 'class', 'line-group' )
+            .attr( 'transform', 'translate( 50, -200 )' )
+          .append( 'path' )
+            .datum( data )
+            .attr( 'd', line( data ) );
+      }
+
+      draw();
+    </script>
+  </body>
+</html>
